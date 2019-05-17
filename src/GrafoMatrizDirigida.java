@@ -9,7 +9,7 @@ import java.util.Map;
  * @param <V>
  * @param <E>
  */
-public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements Grafo<V,E>{
+public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,E>{
 
     protected int size; // allocation size for graph
     protected Object data[][]; // matrix - array of arrays
@@ -50,6 +50,13 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements Grafo<V,E
         dict.put(label, new Vertex<V>(label, row));
     }
 
+    /**
+     * Agrega un arco
+     * @param vtx1  Etiqueta del vertice 1
+     * @param vtx2  Etiqueta del vertice 2
+     * @param label Arco entre vertice 1 y vertice 2
+     * @return
+     */
     @Override
     public boolean addEdge(V vtx1, V vtx2, E label) {
         Vertex<V> vertice1 = dict.get(vtx1);
@@ -63,11 +70,6 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements Grafo<V,E
         }
     }
 
-    /**
-     * Devuelve un vertice
-     * @param label to be searched
-     * @return
-     */
     @Override
     public V get(V label) {
         Vertex<V> v = dict.get(label);
@@ -82,9 +84,9 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements Grafo<V,E
     }
 
     /**
-     * Obtener el valor de la ruta mas corta entre vertice con label1 y vertice con label2
-     * @param label1 Etiqueta del vertice1
-     * @param label2 Etiqueta del vertice2
+     * Obtener el valor de la ruta mas corta entre vertice 1 y vertice 2
+     * @param label1 vertice1
+     * @param label2 vertice2
      * @return Devuelve la dstancia mas corta
      */
     public String getRutaMasCorta(V label1, V label2) {
