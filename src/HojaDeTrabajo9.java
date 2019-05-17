@@ -15,22 +15,54 @@ public class HojaDeTrabajo9 {
 
         boolean whantsToContinue = true;
 
-        //Ingreso de path del archivo
+        /*/Ingreso de path del archivo
         System.out.print("\nIngrese path del archivo: ");
         Scanner input = new Scanner(System.in);
-        String path = input.next();
+        String path = input.next();*/
 
-        //path = "D:\\Users\\Juanfer De Leon\\Desktop\\Estructura de Datos\\Projects\\HojaDeTrabajo9\\guategrafo.txt";
+        String path = "D:\\Users\\Juanfer De Leon\\Desktop\\Estructura de Datos\\Projects\\HojaDeTrabajo9\\guategrafo.txt";
 
         //Crea el grafo
         IGrafo<String, Double> grafo = leerGrafo(path);
 
         while (whantsToContinue){
+            //Imprime el menu
+            System.out.println(menu());
+
+            System.out.print("\nIngrese una opcion: ");
+            Scanner input2 = new Scanner(System.in);
+            String op = input2.next();
+
+            switch (op){
+
+                case "1":
+                    break;
+
+                case "2":
+                    break;
+
+                case "3":
+                    break;
+
+                case "4":
+                    break;
+
+                default:
+                    System.out.println("\nERROR: Opcion ingresada no es valida.");
+                    break;
+
+            }
 
         }
 
     }
 
+    /**
+     * Metodo lee el archivo y crea el grafo
+     * @param path Direccion del archivo
+     * @return Devuelve grafo creado
+     * @throws IOException
+     */
     public static IGrafo<String, Double> leerGrafo (String path) throws IOException {
 
         File file = new File(path);
@@ -53,6 +85,18 @@ public class HojaDeTrabajo9 {
 
         return grafo;
 
+    }
+
+    /**
+     * Menu principal
+     * @return
+     */
+    public static String menu(){
+        return "\n\tMENU" +
+                "\n1. Calcular la ruta mas cercana"  +
+                "\n2. Calcular Centro de Grafo" +
+                "\n3. Agregar conexion entre dos ciudades" +
+                "\n4. Salir";
     }
 
 }
