@@ -64,7 +64,7 @@ public class HojaDeTrabajo9 {
                     vtx1 = input4.nextLine();
                     System.out.print("\nIngrese la segunda ciudad: ");
                     vtx2 = input4.nextLine();
-                    System.out.println("Ingrese distancia entre ciudades (kilometros): ");
+                    System.out.print("Ingrese distancia entre ciudades (kilometros): ");
                     String dist = input4.nextLine();
 
                     //Agrega la informacion

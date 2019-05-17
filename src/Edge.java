@@ -30,18 +30,4 @@ public class Edge<V,E> {
         return this.vtx1;
     }
 
-    public boolean isVisited() {
-        return visited;
-    }
-
-    public boolean visit() {
-        boolean state = this.visited;
-        this.visited = true;
-        return state;
-    }
-
-    public E label() {
-        return label;
-    }
-
 }
