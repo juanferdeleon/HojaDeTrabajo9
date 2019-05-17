@@ -9,7 +9,7 @@ public interface IGrafo <V,E> {
      * Se agrega un vertice al grafo
      * @param label Etiqueta para el vertice
      */
-    public void add(V label);
+    void add(V label);
 
     /**
      *
@@ -20,21 +20,21 @@ public interface IGrafo <V,E> {
      * @param label Arco entre vertice 1 y vertice 2
      * @return Devuelve verdadero si el Arco fue agregado exitosamente
      */
-    public boolean addEdge(V vtx1, V vtx2, E label);
+    boolean addEdge(V vtx1, V vtx2, E label);
 
     /**
+     * Obtener el valor de la ruta mas corta entre vertice 1 y vertice 2
+     * @param label1 vertice1
+     * @param label2 vertice2
+     * @return Devuelve la dstancia mas corta
+     */
+    String getRutaMasCorta(V label1, V label2);
+
+    /**
+     * Encuentra el centro del grafo
      * @param label
-     * @return Deuelve etiqueta del vertice
+     * @return
      */
-    public V get(V label);
-
-    /**
-     * Devuelve arco entre vertices
-     *
-     * @param label1 vertice 1
-     * @param label2 vertice 2
-     * @return Arco entre vertice 1 y vertice 2
-     */
-    public Edge<V, E> getEdge(V label1, V label2);
+    V getCentroGrafo(V label);
 
 }

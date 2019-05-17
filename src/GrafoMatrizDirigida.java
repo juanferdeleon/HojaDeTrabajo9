@@ -11,10 +11,10 @@ import java.util.Map;
  */
 public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,E>{
 
-    protected int size; // allocation size for graph
-    protected Object data[][]; // matrix - array of arrays
-    protected Map<V,Vertex<V>> dict; // labels -> vertices
-    protected List<Integer> freeList; // available indices in matrix
+    protected int size; // Tamañp del grafo
+    protected Object data[][]; // matriz
+    protected Map<V,Vertex<V>> dict; // vertices
+    protected List<Integer> freeList; // indices disponibles en la matriz
     private boolean negativeCycle;
     Number[][] distances;
 
@@ -70,19 +70,6 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,
         }
     }
 
-    @Override
-    public V get(V label) {
-        Vertex<V> v = dict.get(label);
-        return (v == null) ? null : v.label();
-    }
-
-    @Override
-    public Edge<V, E> getEdge(V label1, V label2) {
-        Vertex<V> vtx1 = dict.get(label1);
-        Vertex<V> vtx2 = dict.get(label2);
-        return (vtx1 == null || vtx2 == null) ? null : (Edge<V, E>) data[vtx1.row()][vtx2.row()];
-    }
-
     /**
      * Obtener el valor de la ruta mas corta entre vertice 1 y vertice 2
      * @param label1 vertice1
@@ -93,7 +80,7 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,
         Vertex<V> vtx1 = dict.get(label1);
         Vertex<V> vtx2 = dict.get(label2);
         if (vtx1 == null || vtx2 == null) return "No hay conexion!";
-        return "La ruta mas corta es de: " + this.distances[vtx1.row()][vtx2.row()] + ".";
+        return "\nLa ruta mas corta es de: " + this.distances[vtx1.row()][vtx2.row()] + ".";
     }
 
     /**
@@ -102,6 +89,7 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,
      * @return
      */
     public V getCentroGrafo(V label){
+
         int[] columnMaxIndex = new int[distances.length];
         for(int i = 0; i < distances.length; i++) {
             Number currentMax = distances[i][0];
@@ -135,29 +123,4 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,
 
     }
 
-    public void floydWarshall() {
-        int n = this.data.length;
-        for(int x = 0; x < n; x++) {
-            for(int y = 0; y < n; y++) {
-                Edge<V, E> temp = (data[x][y] == null) ? null : (Edge<V, E>) data[x][y];
-                E label = (temp.label() == null) ? null : temp.label();
-                if(label instanceof Number) {
-                    distances[x][y] = (label == null) ? Double.POSITIVE_INFINITY : (Number) label;
-                } else {
-                    return;
-                }
-
-            }
-        }
-        for (int k = 0; k < n; k++) {
-            for (int i = 0; i < n; i++) {
-                for (int j = 0; j < n; j++) {
-                    distances[i][j] = Math.min(distances[i][j].doubleValue(), distances[i][k].doubleValue() + distances[k][j].doubleValue());
-                }
-            }
-            if ((Double) distances[k][k] < 0.0) {
-                this.negativeCycle = true;
-            }
-        }
-    }
 }

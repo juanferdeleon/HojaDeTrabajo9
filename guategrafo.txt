@@ -1,0 +1,7 @@
+Guatemala Jutiapa 80
+Guatemala Peten 300
+Guatemala Izabal 400
+Guatemala Escuintla 30
+Guatemala Quetzaltenango 130
+Guatemala Quiche 500
+Quiche Quetzaltenango 40

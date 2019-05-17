@@ -18,7 +18,7 @@ public class HojaDeTrabajo9 {
         /*/Ingreso de path del archivo
         System.out.print("\nIngrese path del archivo: ");
         Scanner input = new Scanner(System.in);
-        String path = input.next();*/
+        String path = input.nextLine();*/
 
         String path = "D:\\Users\\Juanfer De Leon\\Desktop\\Estructura de Datos\\Projects\\HojaDeTrabajo9\\guategrafo.txt";
 
@@ -26,6 +26,7 @@ public class HojaDeTrabajo9 {
         IGrafo<String, Double> grafo = leerGrafo(path);
 
         while (whantsToContinue){
+
             //Imprime el menu
             System.out.println(menu());
 
@@ -36,19 +37,55 @@ public class HojaDeTrabajo9 {
             switch (op){
 
                 case "1":
+
+                    Scanner input3 = new Scanner(System.in);
+
+                    System.out.print("\nIngrese la primera ciudad: ");
+                    String vtx1 = input3.nextLine();
+                    System.out.print("\nIngrese la segunda ciudad: ");
+                    String vtx2 = input3.nextLine();
+
+                    System.out.println(grafo.getRutaMasCorta(vtx1, vtx2));
+
                     break;
 
                 case "2":
+
+                    System.out.println("\nEl centro del grafo es: " + grafo.getCentroGrafo("Guatemala"));
+
                     break;
 
                 case "3":
+
+                    Scanner input4 = new Scanner(System.in);
+
+                    //Informacion de los vertices y el arco
+                    System.out.print("\nIngrese la primera ciudad: ");
+                    vtx1 = input4.nextLine();
+                    System.out.print("\nIngrese la segunda ciudad: ");
+                    vtx2 = input4.nextLine();
+                    System.out.println("Ingrese distancia entre ciudades (kilometros): ");
+                    String dist = input4.nextLine();
+
+                    //Agrega la informacion
+                    grafo.add(vtx1);
+                    grafo.add(vtx2);
+                    boolean added = grafo.addEdge(vtx1, vtx2, Double.parseDouble(dist));
+
+                    System.out.println(((added) ? "Agregado exitosamente" : "Error al ingresar conexion!"));
+
                     break;
 
                 case "4":
+
+                    whantsToContinue = false;
+
                     break;
 
                 default:
+
                     System.out.println("\nERROR: Opcion ingresada no es valida.");
+
                     break;
 
             }
@@ -71,7 +108,7 @@ public class HojaDeTrabajo9 {
 
         String line;
 
-        IGrafo<String, Double> grafo = new GrafoMatrizDirigida<>(10);
+        IGrafo<String, Double> grafo = new GrafoMatrizDirigida<>(7);
 
         while ((line = bufferedReader.readLine()) != null) {
 
