@@ -20,4 +20,5 @@ public class Vertex<E>
 
     public int row() { return this.row;	}
 
+    public E label() { return this.label; }
 }

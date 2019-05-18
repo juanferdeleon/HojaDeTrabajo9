@@ -70,6 +70,17 @@ public class GrafoMatrizDirigida<V,E extends Comparable<E>> implements IGrafo<V,
         }
     }
 
+    public V get(V label) {
+        Vertex<V> v = dict.get(label);
+        return (v == null) ? null : v.label();
+    }
+
+    public Edge<V, E> getEdge(V label1, V label2) {
+        Vertex<V> vtx1 = dict.get(label1);
+        Vertex<V> vtx2 = dict.get(label2);
+        return (vtx1 == null || vtx2 == null) ? null : (Edge<V, E>) data[vtx1.row()][vtx2.row()];
+    }
+
     /**
      * Obtener el valor de la ruta mas corta entre vertice 1 y vertice 2
      * @param label1 vertice1
